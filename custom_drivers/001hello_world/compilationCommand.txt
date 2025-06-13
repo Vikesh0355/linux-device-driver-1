@@ -1,0 +1,87 @@
+/***********************command promt compilation****/
+vikesh@vikesh-VirtualBox:~/BBB_WorkspaceDriver/linux-device-driver-1/custom_drivers/001hello_world$ make -C /lib/modules/6.11.0-26-generic/build/ M=$PWD modules
+make: Entering directory '/usr/src/linux-headers-6.11.0-26-generic'
+warning: the compiler differs from the one used to build the kernel
+  The kernel was built by: x86_64-linux-gnu-gcc-13 (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0
+  You are using:           gcc-13 (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0
+  CC [M]  /home/vikesh/BBB_WorkspaceDriver/linux-device-driver-1/custom_drivers/001hello_world/main.o
+  MODPOST /home/vikesh/BBB_WorkspaceDriver/linux-device-driver-1/custom_drivers/001hello_world/Module.symvers
+  CC [M]  /home/vikesh/BBB_WorkspaceDriver/linux-device-driver-1/custom_drivers/001hello_world/main.mod.o
+  LD [M]  /home/vikesh/BBB_WorkspaceDriver/linux-device-driver-1/custom_drivers/001hello_world/main.ko
+  BTF [M] /home/vikesh/BBB_WorkspaceDriver/linux-device-driver-1/custom_drivers/001hello_world/main.ko
+Skipping BTF generation for /home/vikesh/BBB_WorkspaceDriver/linux-device-driver-1/custom_drivers/001hello_world/main.ko due to unavailability of vmlinux
+make: Leaving directory '/usr/src/linux-headers-6.11.0-26-generic'
+vikesh@vikesh-VirtualBox:~/BBB_WorkspaceDriver/linux-device-driver-1/custom_drivers/001hello_world$ sudo insmod main.ko
+[sudo] password for vikesh: 
+insmod: ERROR: could not insert module main.ko: File exists
+vikesh@vikesh-VirtualBox:~/BBB_WorkspaceDriver/linux-device-driver-1/custom_drivers/001hello_world$ sudo rmmod man.ko
+rmmod: ERROR: Module man is not currently loaded
+vikesh@vikesh-VirtualBox:~/BBB_WorkspaceDriver/linux-device-driver-1/custom_drivers/001hello_world$ sudo rmmod main.ko
+vikesh@vikesh-VirtualBox:~/BBB_WorkspaceDriver/linux-device-driver-1/custom_drivers/001hello_world$ sudo insmod main.ko
+vikesh@vikesh-VirtualBox:~/BBB_WorkspaceDriver/linux-device-driver-1/custom_drivers/001hello_world$ sudo dmesg | tail -20
+[  115.385853] audit: type=1400 audit(1749826280.418:168): apparmor="DENIED" operation="open" class="file" profile="snap-update-ns.firefox" name="/usr/local/share/" pid=4144 comm="snap-update-ns" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+[  115.456319] audit: type=1400 audit(1749826280.489:169): apparmor="DENIED" operation="open" class="file" profile="snap-update-ns.firefox" name="/proc/4149/maps" pid=4149 comm="snap-update-ns" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+[  117.540061] audit: type=1107 audit(1749826282.574:170): pid=692 uid=101 auid=4294967295 ses=4294967295 subj=unconfined msg='apparmor="DENIED" operation="dbus_method_call"  bus="system" path="/org/freedesktop/timedate1" interface="org.freedesktop.DBus.Properties" member="GetAll" mask="send" name=":1.129" pid=4119 label="snap.firefox.firefox" peer_pid=4248 peer_label="unconfined"
+                exe="/usr/bin/dbus-daemon" sauid=101 hostname=? addr=? terminal=?'
+[  117.541005] audit: type=1107 audit(1749826282.574:171): pid=692 uid=101 auid=4294967295 ses=4294967295 subj=unconfined msg='apparmor="DENIED" operation="dbus_method_call"  bus="system" path="/org/freedesktop/timedate1" interface="org.freedesktop.DBus.Properties" member="GetAll" mask="send" name=":1.129" pid=4119 label="snap.firefox.firefox" peer_pid=4248 peer_label="unconfined"
+                exe="/usr/bin/dbus-daemon" sauid=101 hostname=? addr=? terminal=?'
+[  222.448424] Invalid architecture in ELF header: 40
+[  308.143973] workqueue: e1000_watchdog [e1000] hogged CPU for >10000us 4 times, consider switching to WQ_UNBOUND
+[  310.612092] audit: type=1107 audit(1749826475.743:172): pid=692 uid=101 auid=4294967295 ses=4294967295 subj=unconfined msg='apparmor="DENIED" operation="dbus_method_call"  bus="system" path="/org/freedesktop/timedate1" interface="org.freedesktop.DBus.Properties" member="GetAll" mask="send" name=":1.140" pid=4119 label="snap.firefox.firefox" peer_pid=5108 peer_label="unconfined"
+                exe="/usr/bin/dbus-daemon" sauid=101 hostname=? addr=? terminal=?'
+[  312.265898] workqueue: e1000_watchdog [e1000] hogged CPU for >10000us 5 times, consider switching to WQ_UNBOUND
+[  318.408692] workqueue: e1000_watchdog [e1000] hogged CPU for >10000us 7 times, consider switching to WQ_UNBOUND
+[  438.994017] Invalid architecture in ELF header: 40
+[  498.839358] Invalid architecture in ELF header: 40
+[  553.908823] Invalid architecture in ELF header: 40
+[  654.622216] workqueue: blk_mq_run_work_fn hogged CPU for >10000us 4 times, consider switching to WQ_UNBOUND
+[  872.363253] Hello world
+[  909.223261] workqueue: blk_mq_run_work_fn hogged CPU for >10000us 5 times, consider switching to WQ_UNBOUND
+[ 1166.628617] Good bye world
+[ 1171.108419] Hello world
+
+/***********************************************************************/
+
+
+/****************Compile by make**************************************/
+
+ikesh@vikesh-VirtualBox:~/BBB_WorkspaceDriver/linux-device-driver-1/custom_drivers/001hello_world$ make
+make -C /lib/modules/6.11.0-26-generic/build M=/home/vikesh/BBB_WorkspaceDriver/linux-device-driver-1/custom_drivers/001hello_world modules
+make[1]: Entering directory '/usr/src/linux-headers-6.11.0-26-generic'
+warning: the compiler differs from the one used to build the kernel
+  The kernel was built by: x86_64-linux-gnu-gcc-13 (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0
+  You are using:           gcc-13 (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0
+  CC [M]  /home/vikesh/BBB_WorkspaceDriver/linux-device-driver-1/custom_drivers/001hello_world/main.o
+  MODPOST /home/vikesh/BBB_WorkspaceDriver/linux-device-driver-1/custom_drivers/001hello_world/Module.symvers
+  CC [M]  /home/vikesh/BBB_WorkspaceDriver/linux-device-driver-1/custom_drivers/001hello_world/main.mod.o
+  LD [M]  /home/vikesh/BBB_WorkspaceDriver/linux-device-driver-1/custom_drivers/001hello_world/main.ko
+  BTF [M] /home/vikesh/BBB_WorkspaceDriver/linux-device-driver-1/custom_drivers/001hello_world/main.ko
+Skipping BTF generation for /home/vikesh/BBB_WorkspaceDriver/linux-device-driver-1/custom_drivers/001hello_world/main.ko due to unavailability of vmlinux
+make[1]: Leaving directory '/usr/src/linux-headers-6.11.0-26-generic'
+vikesh@vikesh-VirtualBox:~/BBB_WorkspaceDriver/linux-device-driver-1/custom_drivers/001hello_world$ sudo insmod main.ko
+[sudo] password for vikesh: 
+insmod: ERROR: could not insert module main.ko: File exists
+vikesh@vikesh-VirtualBox:~/BBB_WorkspaceDriver/linux-device-driver-1/custom_drivers/001hello_world$ sudo rmmod main.ko
+vikesh@vikesh-VirtualBox:~/BBB_WorkspaceDriver/linux-device-driver-1/custom_drivers/001hello_world$ sudo dmesg | tail -20
+                exe="/usr/bin/dbus-daemon" sauid=101 hostname=? addr=? terminal=?'
+[  222.448424] Invalid architecture in ELF header: 40
+[  308.143973] workqueue: e1000_watchdog [e1000] hogged CPU for >10000us 4 times, consider switching to WQ_UNBOUND
+[  310.612092] audit: type=1107 audit(1749826475.743:172): pid=692 uid=101 auid=4294967295 ses=4294967295 subj=unconfined msg='apparmor="DENIED" operation="dbus_method_call"  bus="system" path="/org/freedesktop/timedate1" interface="org.freedesktop.DBus.Properties" member="GetAll" mask="send" name=":1.140" pid=4119 label="snap.firefox.firefox" peer_pid=5108 peer_label="unconfined"
+                exe="/usr/bin/dbus-daemon" sauid=101 hostname=? addr=? terminal=?'
+[  312.265898] workqueue: e1000_watchdog [e1000] hogged CPU for >10000us 5 times, consider switching to WQ_UNBOUND
+[  318.408692] workqueue: e1000_watchdog [e1000] hogged CPU for >10000us 7 times, consider switching to WQ_UNBOUND
+[  438.994017] Invalid architecture in ELF header: 40
+[  498.839358] Invalid architecture in ELF header: 40
+[  553.908823] Invalid architecture in ELF header: 40
+[  654.622216] workqueue: blk_mq_run_work_fn hogged CPU for >10000us 4 times, consider switching to WQ_UNBOUND
+[  872.363253] Hello world
+[  909.223261] workqueue: blk_mq_run_work_fn hogged CPU for >10000us 5 times, consider switching to WQ_UNBOUND
+[ 1166.628617] Good bye world
+[ 1171.108419] Hello world
+[ 1564.503992] workqueue: blk_mq_run_work_fn hogged CPU for >10000us 7 times, consider switching to WQ_UNBOUND
+[ 1606.594881] workqueue: e1000_watchdog [e1000] hogged CPU for >10000us 11 times, consider switching to WQ_UNBOUND
+[ 1799.932027] workqueue: blk_mq_run_work_fn hogged CPU for >10000us 11 times, consider switching to WQ_UNBOUND
+[ 3339.602532] workqueue: blk_mq_run_work_fn hogged CPU for >10000us 19 times, consider switching to WQ_UNBOUND
+[ 3441.282859] Good bye world
+vikesh@vikesh-VirtualBox:~/BBB_WorkspaceDriver/linux-device-driver-1/custom_drivers/001hello_world$ 
+****************************************************************************************
