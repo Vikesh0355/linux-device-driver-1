@@ -85,3 +85,17 @@ vikesh@vikesh-VirtualBox:~/BBB_WorkspaceDriver/linux-device-driver-1/custom_driv
 [ 3441.282859] Good bye world
 vikesh@vikesh-VirtualBox:~/BBB_WorkspaceDriver/linux-device-driver-1/custom_drivers/001hello_world$ 
 ****************************************************************************************
+
+/**********target compile ***************************/
+vikesh@vikesh-VirtualBox:~/BBB_WorkspaceDriver/linux-device-driver-1/custom_drivers/001hello_world$ sudo make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -C /home/vikesh/BBB_Workspace/Downloads/linux/ M=$PWD modules
+make: Entering directory '/home/vikesh/BBB_Workspace/Downloads/linux'
+  CC [M]  /home/vikesh/BBB_WorkspaceDriver/linux-device-driver-1/custom_drivers/001hello_world/main.o
+  MODPOST /home/vikesh/BBB_WorkspaceDriver/linux-device-driver-1/custom_drivers/001hello_world/Module.symvers
+  CC [M]  /home/vikesh/BBB_WorkspaceDriver/linux-device-driver-1/custom_drivers/001hello_world/main.mod.o
+  LD [M]  /home/vikesh/BBB_WorkspaceDriver/linux-device-driver-1/custom_drivers/001hello_world/main.ko
+make: Leaving directory '/home/vikesh/BBB_Workspace/Downloads/linux'
+vikesh@vikesh-VirtualBox:~/BBB_WorkspaceDriver/linux-device-driver-1/custom_drivers/001hello_world$ 
+
+/*********************************************************************************************************************************
+/**then in ubuntu terminal ***/
+scp main.ko debian@192.168.6.2:/home/debian/drivers/
