@@ -1,10 +1,15 @@
 obj-m := main.o
-
-KDIR := /lib/modules/$(shell uname -r)/build
-PWD := $(shell pwd)
-
+ARCH = arm
+CROSS_COMPILE = arm-linux-gnueabihf-
+KERN_DIR = /home/vikesh/BBB_Workspace/Downloads/linux-5.10.168-ti-r72/
+HOST_KERN_DIR = /lib/modules/$(shell uname -r)/build/
 all:
-	$(MAKE) -C $(KDIR) M=$(PWD) modules
-
+	make ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) -C $(KERN_DIR) M=$(PWD) modules
 clean:
-	$(MAKE) -C $(KDIR) M=$(PWD) clean
+	make ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) -C $(KERN_DIR) M=$(PWD) clean
+help:
+	make ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) -C $(KERN_DIR) M=$(PWD) help
+host:
+	make -C $(HOST_KERN_DIR) M=$(PWD) modules
+
+	
