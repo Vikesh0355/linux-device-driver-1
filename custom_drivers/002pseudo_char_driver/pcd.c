@@ -1,30 +1,4 @@
-#include<linux/module.h>
-#include<linux/fs.h>
-#include<linux/cdev.h>
-#include<linux/device.h>
-#include<linux/kdev_t.h>
-#include<linux/uaccess.h>
-
-
-#undef pr_fmt
-#define pr_fmt(fmt) "%s : " fmt,__func__
-
-#define DEV_MEM_SIZE 512
-
-/* pseudo device's memory */
-char device_buffer[DEV_MEM_SIZE];
-
-/* This holds the device number */
-dev_t device_number;
-
-/* Cdev variable */
-struct cdev pcd_cdev;
-
-/*holds the class pointer */
-struct class *class_pcd;
-
-struct device *device_pcd;
-
+#include "pcd.h"
 
 loff_t pcd_lseek(struct file *filp, loff_t offset, int whence)
 {
@@ -168,7 +142,8 @@ static int __init pcd_driver_init(void)
 	}
 
 	/*4. create device class under /sys/class/ */
-	class_pcd = class_create(THIS_MODULE,"pcd_class");
+	//class_pcd = class_create(THIS_MODULE,"pcd_class"); /*Vikesh: commnetd due to kernel 6.xx function signature changed* */
+	class_pcd = class_create("pcd_class");
 	if(IS_ERR(class_pcd)){
 		pr_err("Class creation failed\n");
 		ret = PTR_ERR(class_pcd);
