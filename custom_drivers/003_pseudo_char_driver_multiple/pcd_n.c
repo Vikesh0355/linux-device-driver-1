@@ -1,9 +1,4 @@
-#include<linux/module.h>
-#include<linux/fs.h>
-#include<linux/cdev.h>
-#include<linux/device.h>
-#include<linux/kdev_t.h>
-#include<linux/uaccess.h>
+#include "pcd.h"
 
 
 #undef pr_fmt
@@ -277,7 +272,8 @@ static int __init pcd_driver_init(void)
 	}
 
 	/*create device class under /sys/class/ */
-	pcdrv_data.class_pcd = class_create(THIS_MODULE,"pcd_class");
+	//pcdrv_data.class_pcd = class_create(THIS_MODULE,"pcd_class"); /*TODO:Vikesh: in linux 6.xx function class create expect 1 args */
+	pcdrv_data.class_pcd = class_create("pcd_class");
 	if(IS_ERR(pcdrv_data.class_pcd)){
 		pr_err("Class creation failed\n");
 		ret = PTR_ERR(pcdrv_data.class_pcd);

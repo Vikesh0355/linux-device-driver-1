@@ -1,7 +1,7 @@
 obj-m := pcd_n.o
 ARCH=arm
 CROSS_COMPILE=arm-linux-gnueabihf-
-KERN_DIR = ~/workspace/ldd/source/linux_bbb_4.14/
+KERN_DIR = ~/BBB_Workspace/Downloads/linux-5.10.168-ti-r72
 HOST_KERN_DIR = /lib/modules/$(shell uname -r)/build/
 
 all:
