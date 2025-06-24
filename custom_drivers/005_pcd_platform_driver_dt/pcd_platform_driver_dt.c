@@ -237,7 +237,8 @@ struct file_operations pcd_fops=
 
 
 /*Called when the device is removed from the system */
-int pcd_platform_driver_remove(struct platform_device *pdev)
+//int pcd_platform_driver_remove(struct platform_device *pdev) /**TODO:MISH:Older kernel supports */
+void pcd_platform_driver_remove(struct platform_device *pdev)
 {
 
 #if 1
@@ -254,7 +255,7 @@ int pcd_platform_driver_remove(struct platform_device *pdev)
 
 #endif 
 	dev_info(&pdev->dev,"A device is removed\n");
-	return 0;
+	//return 0; /**TODO:MISH:commented here as per kernel 6.xx */
 }
 
 struct pcdev_platform_data* pcdev_get_platdata_from_dt(struct device *dev)
@@ -441,7 +442,8 @@ static int __init pcd_platform_driver_init(void)
 	}
 
 	/*2. Create device class under /sys/class */
-	pcdrv_data.class_pcd = class_create(THIS_MODULE,"pcd_class");
+	//pcdrv_data.class_pcd = class_create(THIS_MODULE,"pcd_class"); /**supported in older kernel */
+	pcdrv_data.class_pcd = class_create("pcd_class");
 	if(IS_ERR(pcdrv_data.class_pcd)){
 		pr_err("Class creation failed\n");
 		ret = PTR_ERR(pcdrv_data.class_pcd);
