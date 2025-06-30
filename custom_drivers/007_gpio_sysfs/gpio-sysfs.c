@@ -9,7 +9,8 @@
 #include <linux/io.h>
 #include <linux/of.h>
 #include <linux/of_device.h>
-#include<linux/gpio/consumer.h>
+#include <linux/gpio/consumer.h>
+#include "gpio-sysfs.h"
 
 #undef pr_fmt
 #define pr_fmt(fmt) "%s : " fmt,__func__
@@ -127,7 +128,8 @@ static const struct attribute_group *gpio_attr_groups[] =
 
 };
 
-int gpio_sysfs_remove(struct platform_device *pdev)
+//int gpio_sysfs_remove(struct platform_device *pdev) /*TODO:MISH: Commented here for compilation*/
+void gpio_sysfs_remove(struct platform_device *pdev)
 {
 	int i;
 	
@@ -136,7 +138,7 @@ int gpio_sysfs_remove(struct platform_device *pdev)
 	for(i = 0 ; i < gpio_drv_data.total_devices ; i++){
 		device_unregister(gpio_drv_data.dev[i]);
 	}
-	return 0;
+	//return 0;
 
 }
 
@@ -189,7 +191,8 @@ int gpio_sysfs_probe(struct platform_device *pdev)
 		}
 
 		dev_data->desc = devm_fwnode_get_gpiod_from_child(dev,"bone",&child->fwnode,\
-							GPIOD_ASIS,dev_data->label);
+							GPIOD_ASIS,dev_data->label);    /**TODO:MISH:commented to compile */
+		
 		if(IS_ERR( dev_data->desc)){
 			ret = PTR_ERR(dev_data->desc);
 			if(ret == -ENOENT)
@@ -242,7 +245,8 @@ struct platform_driver gpiosysfs_platform_driver =
 
 int __init gpio_sysfs_init(void)
 {
-	gpio_drv_data.class_gpio = class_create(THIS_MODULE,"bone_gpios");
+	//gpio_drv_data.class_gpio = class_create(THIS_MODULE,"bone_gpios");
+	gpio_drv_data.class_gpio = class_create("bone_gpios");
 	if(IS_ERR(gpio_drv_data.class_gpio)){
 		pr_err("Error in creating class \n");
 		return PTR_ERR(gpio_drv_data.class_gpio);
