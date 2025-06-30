@@ -94,7 +94,8 @@ int pcd_sysfs_create_files(struct device *pcd_dev)
 
 
 /*Called when the device is removed from the system */
-int pcd_platform_driver_remove(struct platform_device *pdev)
+//int pcd_platform_driver_remove(struct platform_device *pdev) /**TODO:MISH:Commented */
+void pcd_platform_driver_remove(struct platform_device *pdev)
 {
 
 #if 1
@@ -111,7 +112,7 @@ int pcd_platform_driver_remove(struct platform_device *pdev)
 
 #endif 
 	dev_info(&pdev->dev,"A device is removed\n");
-	return 0;
+	//return 0; /**TODO:MISH:Cooḿmented */
 }
 
 struct pcdev_platform_data* pcdev_get_platdata_from_dt(struct device *dev)
@@ -304,7 +305,8 @@ static int __init pcd_platform_driver_init(void)
 	}
 
 	/*2. Create device class under /sys/class */
-	pcdrv_data.class_pcd = class_create(THIS_MODULE,"pcd_class");
+	//pcdrv_data.class_pcd = class_create(THIS_MODULE,"pcd_class"); /*TODO:MISH:Commented to make compile for linux 6.xx*/ 
+	pcdrv_data.class_pcd = class_create("pcd_class");
 	if(IS_ERR(pcdrv_data.class_pcd)){
 		pr_err("Class creation failed\n");
 		ret = PTR_ERR(pcdrv_data.class_pcd);
