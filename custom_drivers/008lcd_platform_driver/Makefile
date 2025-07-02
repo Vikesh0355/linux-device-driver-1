@@ -2,7 +2,7 @@ obj-m := bonelcd.o
 bonelcd-objs += lcd_platform_driver.o lcd.o gpio.o
 ARCH=arm
 CROSS_COMPILE=arm-linux-gnueabihf-
-KERN_DIR =/home/kiran/workspace/ldd/source/linux_bbb_5.4/
+KERN_DIR = /home/vikesh/BBB_Workspace/Downloads/linux-5.10.168-ti-r72/
 HOST_KERN_DIR = /lib/modules/$(shell uname -r)/build/
 
 all:
