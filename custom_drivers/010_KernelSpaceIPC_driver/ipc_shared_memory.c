@@ -4,6 +4,8 @@
 #include <linux/mm.h>
 #include <linux/slab.h>
 #include <linux/uaccess.h>
+#include <linux/io.h>
+
 
 #define DEVICE_NAME "ipc_mmap"
 #define SHARED_MEM_SIZE PAGE_SIZE
