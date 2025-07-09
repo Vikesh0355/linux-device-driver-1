@@ -1,6 +1,5 @@
 #include <iostream>
 #include <fcntl.h>
-#include <sys/mman.h>
 #include <unistd.h>
 #include <cstring>
 
@@ -13,23 +12,32 @@ int main() {
         return 1;
     }
 
-    char* addr = (char*) mmap(nullptr, SHARED_MEM_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
-    if (addr == MAP_FAILED) {
-        perror("mmap");
-        close(fd);
-        return 1;
+    // Read current content
+    char buffer[SHARED_MEM_SIZE] = {0};
+    ssize_t bytesRead = read(fd, buffer, sizeof(buffer) - 1);
+    if (bytesRead < 0) {
+        perror("read");
+    } else {
+        std::cout << "[User] Read from kernel: " << buffer << std::endl;
     }
 
-    // Write something
-    strcpy(addr, "Hello from mmap user program!");
+    // Get user input to write
+    std::cout << "[User] Enter new message to write: ";
+    std::string input;
+    std::getline(std::cin, input);
 
-    // Read it back
-    std::cout << "User-space mmap read: " << addr << std::endl;
+    if (write(fd, input.c_str(), input.length()) < 0) {
+        perror("write");
+    } else {
+        std::cout << "[User] Wrote to kernel.\n";
+    }
 
-    munmap(addr, SHARED_MEM_SIZE);
     close(fd);
     return 0;
 }
 
-/* g++ ipc_mmap_user.cpp -o ipc_mmap_user */
-/* ./ipc_mmap_user */
+/* Compile:
+   g++ ipc_mmap_user.cpp -o ipc_rw_user
+   Run:
+   ./ipc_rw_user
+*/
