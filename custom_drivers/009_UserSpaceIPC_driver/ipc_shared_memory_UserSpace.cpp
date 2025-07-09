@@ -52,5 +52,5 @@ int main() {
 }
 
 
-/* g++ ipc_shared_memory.cpp -o ipc_shared_memory */
-/* ./ipc_shared_memory */
+/* g++ ipc_shared_memory_UserSpace.cpp -o ipc_shared_memory_UserSpace */
+/* ./ipc_shared_memory_UserSpace */

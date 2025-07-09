@@ -66,3 +66,5 @@ static void __exit ipc_mmap_exit(void) {
 
 module_init(ipc_mmap_init);
 module_exit(ipc_mmap_exit);
+/* g++ ipc_shared_memory.cpp -o ipc_shared_memory */
+/* ./ipc_shared_memory */
