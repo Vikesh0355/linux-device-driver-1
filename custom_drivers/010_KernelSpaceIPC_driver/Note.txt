@@ -1,0 +1,7 @@
+sudo insmod ipc_shared_memory.ko
+dmesg | tail
+
+sudo mknod /dev/ipc_mmap c 239 0  # Replace 239 with actual major if different
+sudo chmod 666 /dev/ipc_mmap
+
+./ipc_shared_memory_UserSpace

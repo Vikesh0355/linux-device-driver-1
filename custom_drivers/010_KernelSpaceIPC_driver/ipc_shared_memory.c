@@ -23,9 +23,12 @@ static int ipc_mmap_release(struct inode *inode, struct file *filp) {
     return 0;
 }
 
-static int ipc_mmap_mmap(struct file *filp, struct vm_area_struct *vma) {
+static int ipc_mmap_mmap(struct file *filp, struct vm_area_struct *vma) 
+{
     unsigned long pfn = virt_to_phys(shared_buffer) >> PAGE_SHIFT;
 
+    printk(KERN_INFO "ipc_mmap: mmap called, mapping shared_buffer (virt: %p, phys: %llx)\n", shared_buffer, virt_to_phys(shared_buffer));
+           
     return remap_pfn_range(vma,
                            vma->vm_start,
                            pfn,
