@@ -28,6 +28,7 @@ int pcd_platform_driver_probe(struct platform_device *pdev);
 
 
 
+/*This exercise is based on Device matching mechanism(name matching/device ID matching). Where correct driver gets autoloaded whenever a new device is add to the bus*/
 
 
 

@@ -99,3 +99,6 @@ vikesh@vikesh-VirtualBox:~/BBB_WorkspaceDriver/linux-device-driver-1/custom_driv
 /*********************************************************************************************************************************
 /**then in ubuntu terminal ***/
 scp main.ko debian@192.168.6.2:/home/debian/drivers/
+
+
+/*Note: This exercise is done with in-tree method also over host ubuntu*/

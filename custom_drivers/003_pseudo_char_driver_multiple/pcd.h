@@ -17,3 +17,4 @@ int pcd_release(struct inode *inode, struct file *flip);
 
 
 /*************************************************** */
+/*Note: This exercise is done on host ubuntu*/
