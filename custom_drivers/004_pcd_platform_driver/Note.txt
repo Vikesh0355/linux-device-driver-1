@@ -1,0 +1,9 @@
+/*Note: This exercise is done on ubuntu host*/
+/*This exercise is based on Device matching mechanism(name matching/device ID matching). Where correct driver gets autoloaded whenever a new device is added to the bus*/
+
+/*Whenever a new  device or driver is added, matching  function of platform Bus run and if it finds mathing platform device for platform driver, the probe function of matched driver will  get called. Inside probe function the driver , configures the detected devices*/
+/*vikesh@vikesh-VirtualBox:~/BBB_WorkspaceDriver/linux-device-driver-1/custom_drivers/004_pcd_platform_driver$ sudo insmod pcd_device_setup.ko
+vikesh@vikesh-VirtualBox:~/BBB_WorkspaceDriver/linux-device-driver-1/custom_drivers/004_pcd_platform_driver$ cd /sys/devices/platform/
+vikesh@vikesh-VirtualBox:/sys/devices/platform$ ls
+'Fixed MDIO bus.0'   i8042   intel_rapl_msr.0   kgdboc   pcdev-A1x.0   pcdev-B1x.1   pcdev-C1x.2   pcdev-D1x.3   pcspkr   power   reg-dummy   rtc_cmos   serial8250   uevent
+vikesh@vikesh-VirtualBox:/sys/devices/platform$ */
