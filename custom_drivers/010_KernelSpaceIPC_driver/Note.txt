@@ -1,7 +1,9 @@
-sudo insmod ipc_shared_memory.ko
-dmesg | tail
+sudo insmod ipc_kernel.ko
+dmesg | grep ipc_rw
 
-sudo mknod /dev/ipc_mmap c 239 0  # Replace 239 with actual major if different
+
+sudo mknod /dev/ipc_mmap c 240 0 // change the device no 240 if it differ
 sudo chmod 666 /dev/ipc_mmap
+
 
 ./ipc_mmap_user
