@@ -1,4 +1,4 @@
-obj-m := ipc_shared_memory.o
+obj-m := ipc_kernel.o
 ARCH=arm
 CROSS_COMPILE=arm-linux-gnueabihf-
 KERN_DIR = ~/BBB_Workspace/Downloads/linux-5.10.168-ti-r72
