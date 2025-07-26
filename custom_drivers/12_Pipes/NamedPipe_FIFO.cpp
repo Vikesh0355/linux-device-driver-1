@@ -7,7 +7,10 @@
 
 using namespace std;
 
-int main() {
+/*Named Pipe: Can be used between unrelated processes: Because it has a name in the file system.*/
+
+int main() 
+{
     const char *fifo_path = "/tmp/myfifo";
     char message[] = "Hello from the parent process!";
     char buffer[100];
